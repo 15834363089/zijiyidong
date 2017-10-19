@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        .box {
+            height: 350px;
+            width: 740px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tu {
+            width: 1000px;
+            height: 350px;
+
+        }
+
+        .tu li {
+            width: 750px;
+            height: 350px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all .8s;
+        }
+
+        .tu .active {
+            z-index: 2;
+        }
+
+        .dian .active {
+            background: red;
+        }
+
+        .tu li img {
+            width: 750px;
+            height: 350px;
+        }
+
+        .dian {
+            width: 100%;
+            height: 20px;
+            position: absolute;
+            z-index: 111111111111111;
+            bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dian li {
+            width: 20px;
+            height: 20px;
+            background: #00A5C4;
+            margin: 0 10px;
+            border-radius: 50%;
+        }
+
+        @keyframes leftzuo {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: -740px;
+            }
+        }
+
+        .leftzuo {
+            animation: leftzuo 1s linear forwards;
+        }
+
+        @keyframes leftyou {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: 740px;
+            }
+        }
+
+        .leftyou {
+            animation: leftyou 1s linear forwards;
+        }
+
+        @keyframes rightzuo {
+            0% {
+                left: 740px;
+            }
+            100% {
+                left: 0;
+            }
+        }
+
+        .rightzuo {
+            animation: rightzuo 1s linear forwards;
+        }
+
+        @keyframes rightyou {
+            0% {
+                left: -740px;
+            }
+            100% {
+                left: 0px;
+            }
+        }
+
+        .rightyou {
+            animation: rightyou 1s linear forwards;
+        }
+
+        .zuo{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            position: absolute;
+            z-index: 9999999999;
+            left:0;
+            top:calc(50% - 15px);
+            background: #0016ff;
+            text-align: center;
+        }
+        .you{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            position: absolute;
+            z-index: 9999999999;
+            right:0;
+            top:calc(50% - 15px);
+            background: #0016ff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="tu">
+        <li class="active"><img src="1.jpg" alt=""></li>
+        <li><img src="2.jpg" alt=""></li>
+        <li><img src="3.jpg" alt=""></li>
+        <li><img src="4.jpg" alt=""></li>
+        <li><img src="5.jpg" alt=""></li>
+        <li><img src="6.jpg" alt=""></li>
+        <li><img src="7.jpg" alt=""></li>
+        <li><img src="8.jpg" alt=""></li>
+    </ul>
+    <ul class="dian">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="zuo">左</div>
+    <div class="you">右</div>
+</div>
+</body>
+<script>
+    {
+        let dians = document.querySelectorAll(".dian li")
+        console.log(dians)
+        let tus = document.querySelectorAll(".tu li")
+        console.log(tus)
+        let zuo=document.querySelector(".zuo")
+        let you=document.querySelector(".you")
+
+        let now = 0;
+        let ceng = 10;
+        let kaiguan = true
+
+
+        let st = setInterval(fn, 2000)
+
+        function fn(dir="r") {
+
+            if(dir==="r"){
+                tus[now].classList.add("leftzuo")
+                dians[now].classList.remove("active")
+                now++;
+                if (now === tus.length) {
+                    now = 0;
+                }
+                tus[now].classList.add("rightzuo")
+                dians[now].classList.add("active")
+            }else if(dir==="l"){
+                tus[now].classList.add("leftyou")
+                dians[now].classList.remove("active")
+                now--;
+                if(now === -1){
+                    now=tus.length-1
+                }
+                tus[now].classList.add("rightyou")
+                dians[now].classList.add("active")
+            }
+
+
+
+            tus[now].style.zIndex = ceng++;
+
+
+        }
+
+        tus.forEach(function (ele) {
+            window.addEventListener("animationend", function () {
+                ele.className = "";
+                kaiguan = true;
+            })
+        })
+
+        let dakuang = document.querySelector(".box")
+        dakuang.onmouseover = onfocus = function () {
+            clearInterval(st)
+        }
+        dakuang.onmouseout = onblur = function () {
+            st = setInterval(fn, 2000)
+        }
+
+        dians.forEach(function (ele, index) {
+            console.log(kaiguan)
+            ele.onclick = function () {
+                if (kaiguan) {
+                    if (now > index) {
+                        tus[now].classList.add("leftyou")
+                        tus[index].classList.add("rightyou")
+                    } else if (now < index) {
+                        tus[now].classList.add("leftzuo")
+                        tus[index].classList.add("rightzuo")
+                    }
+                    dians[now].classList.remove('active');
+                    dians[index].classList.add('active');
+                    tus[index].style.zIndex = ceng++;
+                    now = index
+                }
+                kaiguan = false;
+            }
+        })
+        zuo.onclick=function () {
+            if(kaiguan){
+                fn("l")
+                kaiguan=false
+            }
+
+        }
+        you.onclick=function () {
+            if(kaiguan){
+                fn("r");
+                kaiguan=false;
+            }
+        }
+
+    }
+</script>
+</html>
