@@ -282,12 +282,8 @@
 }
 /*  商城商品分类结束 */
 /* 轮播图 */
-.box{
-    width: 750px;
-    height: 350px;
-    background: red;
-    float: left;
-}
+
+
 /* 轮播图结束 */
 /* 充话费 */
 .chonghuafei{
@@ -603,7 +599,7 @@
     line-height: 38px;
     overflow: hidden;
 }
-.shangxia{
+.news-one{
     /*display: block;*/
     width: 479px;
     height: 36px;
@@ -612,7 +608,7 @@
     /*overflow: hidden;*/
     line-height: 36px;
 }
-.shangxia span{
+.news-one span{
     float: right;
     display: block;
     width: 130px;
@@ -620,21 +616,54 @@
     font-size: 15px;
     color:#ccc;
 }
-.p-right{
-    width: 64px;
-    height: 100%;
-    display: flex;
+.news-one{
+    width: 480px;
+    height: 38px;
+    overflow: hidden;
 }
-.p-right li{
-    margin:0 10px;
+.news-one li{
+    height: 38px;
+}
+.news-one li a{
     line-height: 38px;
-    font-size: 18px;
-    color:#ccc;
-    font-weight:bold;
+    color: blue;
+}
+.news-one li span{
+    margin-left: 20px;
+    color: #ccc;
+
+}
+.news-two{
+    width: 480px;
+    height: 38px;
+    overflow: hidden;
+}
+.news-two li{
+    height: 38px;
+}
+.news-two li a{
+    line-height: 38px;
+    color: blue;
+}
+.news-two li span{
+    margin-left: 20px;
+    color: #ccc;
+}
+.zuo{
+    width: 22px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+}
+.you{
+    width: 22px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
 }
 /*公告结束*/
 /*动态开始*/
-.active{
+.boxactive{
     width: 1200px;
     height: 98px;
     margin:10px auto;
@@ -681,6 +710,9 @@
     display: block;
     width: 180px;
     color: #d5cccc;
+}
+.active-bottom .a-txt:hover span{
+    color: #2a57c4;
 }
 /*动态结束*/
 /*信息开始*/
@@ -778,4 +810,150 @@
     font-weight: bold;
     color: #25b2fe;
     padding-right: 4px;
+}
+/*双下标轮播*/
+.box-s{
+    width: 750px;
+    height: 350px;
+    /*background: red;*/
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.box-s .imges{
+    width: 1000px;
+    height: 350px;
+}
+.imges li {
+    width: 750px;
+    height: 350px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .8s;
+}
+.imges li a{
+    display: block;
+    width: 750px;
+    height: 350px;
+}
+.imges .active {
+    z-index: 2;
+}
+.dian .active {
+    background: red;
+}
+
+.imges li img {
+    width: 750px;
+    height: 350px;
+}
+
+.dian {
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    z-index: 111111111111111;
+    bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.dian li {
+    width: 20px;
+    height: 20px;
+    background: #00A5C4;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+
+@keyframes leftzuo {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -740px;
+    }
+}
+
+.leftzuo {
+    animation: leftzuo 1s linear forwards;
+}
+
+@keyframes leftyou {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 740px;
+    }
+}
+
+.leftyou {
+    animation: leftyou 1s linear forwards;
+}
+
+@keyframes rightzuo {
+    0% {
+        left: 740px;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.rightzuo {
+    animation: rightzuo 1s linear forwards;
+}
+
+@keyframes rightyou {
+    0% {
+        left: -740px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+.rightyou {
+    animation: rightyou 1s linear forwards;
+}
+
+.zuozuo{
+    width: 30px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 30px;
+    position: absolute;
+    z-index: 9999999999;
+    left:0;
+    top:calc(50% - 35px);
+    background: rgba(0, 0, 0, 0.22);
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+.zuozuo:hover{
+    background: rgba(0, 0, 0, 0.62);
+}
+.youyou:hover{
+    background: rgba(0, 0, 0, 0.62);
+}
+.youyou{
+    width: 30px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 30px;
+    position: absolute;
+    z-index: 9999999999;
+    right:0;
+    top:calc(50% - 35px);
+    background: rgba(0, 0, 0, 0.42);
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+.mess li:hover{
+    color: #0679dd;
+    text-decoration: underline;
 }
